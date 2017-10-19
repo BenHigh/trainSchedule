@@ -1,0 +1,13 @@
+body{
+	background: #bbb;
+}
+
+#main{
+	background: #eee;
+}
+
+.jumbotron{
+	text-align: center;
+	background: black;
+	color: #eee;
+}
