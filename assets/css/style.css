@@ -1,13 +1,33 @@
+html, body{
+	height: 100%;
+	min-width: 496px;
+}
+
 body{
-	background: #bbb;
+	background-image: url("../img/rrrs.jpg");
+	background-size: cover;
+	background-color: #101;
+	background-repeat: no-repeat;
+	padding-top: 40px;
 }
 
 #main{
-	background: #eee;
+	padding: 40px;
+	background: #302;
+	border-radius: 7px;
 }
 
+.panel .panel-heading{
+	background: #5a9;
+
+}
+
+.panel{
+	border: 2px solid #333;
+	border-radius: 7px;
+}
 .jumbotron{
 	text-align: center;
-	background: black;
-	color: #eee;
+	background: #202;
+	color: #acb;
 }

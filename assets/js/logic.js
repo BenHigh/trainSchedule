@@ -19,13 +19,23 @@ var database = firebase.database();
 
 database.ref().on("child_added", function(childSnapshot) {
   var snapshot = childSnapshot;
-  var next = moment();
-  var diff = moment().diff(next, "minutes");
+  var first = moment(snapshot.val().tFirst, "H:mm");
 
-  next = diff % snapshot.val().tRate;
-  next = snapshot.val().tRate - next;
+  var tRate = snapshot.val().tRate;
 
-  $("#tCont").append("<tr><td>" + snapshot.val().tName + "</td><td>" + snapshot.val().tDest + "</td><td>" + snapshot.val().tRate + "</td><td>" +  + "</td><td>" + next + "</td><td>");
+
+  console.log(first);
+
+  var diff = moment().diff(moment(first, 'minutes'));
+
+  console.log(Math.floor(diff/60000));
+
+  var next = Math.floor(diff/60000) % tRate;
+  console.log(next);
+
+  var tTill = tRate - next;
+
+  $("#tCont").append("<tr><td>" + snapshot.val().tName + "</td><td>" + snapshot.val().tDest + "</td><td>" + snapshot.val().tRate + "</td><td>" + moment().add(tTill,"minutes").format("H:mm") + "</td><td>" + tTill + "</td><td>");
 
 
 // If any errors are experienced, log them to console.
@@ -35,7 +45,8 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-$("#submit").click(function() {
+$("#submit").click(function(event) {
+  event.preventDefault();
   var train = $("#train").val().trim();
   var dest = $("#dest").val().trim();
   var first = $("#first").val().trim();
